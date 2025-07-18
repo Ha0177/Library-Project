@@ -1,8 +1,4 @@
 const myLibrary = [];
-const cardTitle = document.querySelector(".book-title")
-const cardAuthor = document.querySelector(".book-author")
-const cardPages = document.querySelector(".book-pages")
-const cardRead = document.querySelector(".book-read")
 const newBookBtn = document.querySelector(".new-book-btn")
 const addDialog = document.querySelector("#add-dialog")
 const addBtn = document.querySelector(".add-btn")
@@ -27,10 +23,24 @@ function addBookToLib(name, author, pages, read) {
 function loadLibrary() {
     document.querySelectorAll(".book-card").forEach(card => card.remove());
 
+
     myLibrary.forEach(Book => {
         const card = document.createElement("div");
             card.classList.add("book-card");
+            card.dataset.id = Book.id;
         
+            const removeBtn = document.createElement("button");
+            removeBtn.classList.add("remove-btn");
+            removeBtn.textContent = "X";
+
+            removeBtn.addEventListener("click", () => {
+                const index = myLibrary.findIndex(book => book.id === card.dataset.id);
+                if (index !== -1) {
+                    myLibrary.splice(index, 1);
+                }
+                loadLibrary();
+            });
+
             const title = document.createElement("h2");
             title.classList.add("book-title");
             title.textContent = Book.name;
@@ -51,6 +61,7 @@ function loadLibrary() {
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode("Read"));
         
+            card.appendChild(removeBtn);
             card.appendChild(title);
             card.appendChild(author);
             card.appendChild(pages);
