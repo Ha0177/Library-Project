@@ -7,8 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    
+    <button class="new-book-btn">New Book</button>
+
+    <dialog id="add-dialog">
+        <form action="get">
+            <label for="title">Title:</label>
+            <input id="title" type="text" required>
+
+            <label for="author">Author:</label>
+            <input id="author" type="text" required>
+
+            <label for="pages">Pages:</label>
+            <input id="pages" type="number" required>
+
+            <label for="read">Read:</label>
+            <input id="read" type="checkbox">
+
+            <button aria-required="true" type="submit" class="add-btn">Add</button>
+            <button value="cancel" formmethod="dialog" class="close-btn">Close</button>
+        </form>
+    </dialog>
+
     <script src="script.js"></script>
 </body>
 </html>
