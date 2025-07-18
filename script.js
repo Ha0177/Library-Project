@@ -15,6 +15,10 @@ function Book(name, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.updateRead = function() {
+    this.read = !this.read;
+}
+
 function addBookToLib(name, author, pages, read) {
     const book = new Book(name, author, pages, read);
     myLibrary.push(book);
@@ -58,6 +62,10 @@ function loadLibrary() {
             checkbox.type = "checkbox";
             checkbox.classList.add("book-read");
             checkbox.checked = Book.read;
+            checkbox.addEventListener("click", () => {
+                Book.updateRead();
+                loadLibrary();
+            })
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode("Read"));
         
