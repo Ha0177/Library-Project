@@ -1,1 +1,24 @@
 @import url(https://cdn.jsdelivr.net/npm/modern-normalize@3.0.1/modern-normalize.min.css);
+
+
+.book-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem;
+  max-width: 250px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  background: #fff;
+}
+.book-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+.book-author,
+.book-pages {
+  margin: 0.25rem 0;
+  color: #555;
+}
+.book-read {
+  margin-right: 0.5rem;
+}
