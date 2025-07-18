@@ -21,16 +21,36 @@ function addBookToLib(name, author, pages, read) {
     myLibrary.push(book);
 }
 
-addBookToLib("hobbit", "tolkien", 250, true);
-console.log(myLibrary)
+addBookToLib("hobbit", "tolkien", 250, false);
 
-array.forEach(Book => {
-    cardTitle.textContent = Book.name
-    cardAuthor.textContent = Book.author
-    cardPages.textContent = Book.pages
-    if (Book.read = true) {
-        cardRead.checked
-    } else  {
-        cardRead.unchecked
-    }
+myLibrary.forEach(Book => {
+    const card = document.createElement("div");
+    card.classList.add("book-card");
+
+    const title = document.createElement("h2");
+    title.classList.add("book-title");
+    title.textContent = Book.name;
+
+    const author = document.createElement("p");
+    author.classList.add("book-author");
+    author.textContent = "Author: " + Book.author;
+
+    const pages = document.createElement("p")
+    pages.classList.add("book-pages");
+    pages.textContent = "Pages: " + Book.pages;
+
+    const label = document.createElement("label");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.classList.add("book-read");
+    checkbox.checked = Book.read;
+    label.appendChild(checkbox);
+    label.appendChild(document.createTextNode("Read"));
+
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(pages);
+    card.appendChild(label);
+
+    document.body.appendChild(card);
 });
