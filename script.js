@@ -3,30 +3,27 @@ const newBookBtn = document.querySelector(".new-book-btn")
 const addDialog = document.querySelector("#add-dialog")
 const addBtn = document.querySelector(".add-btn")
 
-function Book(name, author, pages, read) {
-   if (!new.target) {
-    throw new Error("Use the new operator");
-    
-   }
-    this.id = crypto.randomUUID();
-    this.name = name;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
+class Book {
+    constructor(name, author, pages, read) {
+        this.id = crypto.randomUUID();
+        this.name = name;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 
-Book.prototype.updateRead = function() {
-    this.read = !this.read;
-}
+    updateRead() {
+        this.read = !this.read;
+    }
 
-function addBookToLib(name, author, pages, read) {
-    const book = new Book(name, author, pages, read);
-    myLibrary.push(book);
+    static addBookToLib(name, author, pages, read) {
+        const book = new Book(name, author, pages, read);
+        myLibrary.push(book);
+    }
 }
 
 function loadLibrary() {
     document.querySelectorAll(".book-card").forEach(card => card.remove());
-
 
     myLibrary.forEach(Book => {
         const card = document.createElement("div");
@@ -98,7 +95,7 @@ addBtn.addEventListener("click", (event) => {
         return;
     }
 
-    addBookToLib(title.value, author.value, pages.value, read.checked);
+    Book.addBookToLib(title.value, author.value, pages.value, read.checked);
     loadLibrary();
 });
 
